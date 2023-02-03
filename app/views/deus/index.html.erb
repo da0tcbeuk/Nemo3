@@ -1,0 +1,66 @@
+
+<%= stylesheet_link_tag 'index', :media => "all" %>
+
+<h2>記事を検索</h2>
+<%= form_tag({controller:"deus",action:"index"}, method: :get) do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag '検索'  %>
+<% end %>
+  
+
+<div class = "tag">
+<%= form_tag({controller:"deus",action:"index"}, method: :get) do %>
+  <% @tags.each do |t| %>
+      <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+  <% end %>
+</div>
+  <%= submit_tag '検索' %>
+<% end %>
+
+
+<li class="nav-item active">
+<a><%= link_to "新規投稿へ", new_deu_path, class: "nav-link" %></a>
+</li>
+</br>
+
+<li class="nav-item active">
+<% if user_signed_in? %>
+  <%= link_to "マイページへ", user_path(current_user.id), class: "nav-link" %>
+<% end %>
+</li>
+</div>
+<%= page_entries_info @tweets %>
+
+<h1>記事一覧</h1>
+  <% @deus.each do |t| %>
+    <div class="deu">
+      
+         <p><%= t.Title %></p>
+         <% if user_signed_in? %>
+         <p><%= link_to t.user.name, user_path(t.user.id) %></p>
+         <% end %>
+         <p class="time"><%= t.created_at %></p>
+       
+
+        <% if user_signed_in? %>
+          <% if current_user.already_liked?(t) %>
+            <%= button_to deu_like_path(id: t.id, deu_id: t.id), method: :delete do %>
+            <i class="fas fa-heart"></i><%= t.likes.count %>
+          <% end %>
+          <% else %>
+            <%= button_to deu_likes_path(id: t.id, deu_id: t.id), method: :post do %>
+              <i class="far fa-heart"></i><%= t.likes.count %>
+            <% end %>
+        <% end %>
+        <% else %>
+            <i class="far fa-heart"></i><%= t.likes.count %>
+         <% end %>
+         
+         <%= link_to "詳細へ", deu_path(t.id) %>
+         <%= image_tag t.user.image_url, size: "83x67" if t.user.image? %>
+         
+      </div>
+  </div>
+<% end %>
+<%= paginate @tweets %>
+</div>

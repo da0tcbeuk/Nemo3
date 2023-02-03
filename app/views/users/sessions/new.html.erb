@@ -1,0 +1,31 @@
+<%= stylesheet_link_tag 'signup', :media => "all" %>
+<h1>ログイン</h1>
+
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+ <div class="post-container"> 
+ <p>※登録したメールアドレスとパスワードをご記入ください。</p>
+  <div class="field">
+    <h2>メールアドレス</h2><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <h2>パスワード</h2><br />
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <h2>記憶する</h2>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "ログイン" %>
+  </div>
+ </div>
+<% end %>
+
+<%= render "users/shared/links" %>

@@ -1,0 +1,26 @@
+<%= stylesheet_link_tag 'like', :media => "all" %>
+
+<h1>コレクション</h1>
+</br>
+<li class="nav-item active">
+<%= link_to "マイページ", user_path, class: "nav-link" %>
+</li>
+</br>
+<li class="nav-item active">
+<%= link_to "記事一覧に戻る", deus_path, class: "nav-link" %>
+</li>
+
+<%= page_entries_info @deus %>
+<% @user.liked_deus.each do |t| %>
+  <div class = "user-container">
+  <h3>ユーザー名</h3>
+  <%= t.user.name %>
+  <h3>タイトル</h3>
+  <%= t.Title %>
+  <%= link_to "詳細へ", deu_path(t.id) %>
+  
+  <span><%= tag.name %></span>
+  </div>
+<% end %>
+
+<%= paginate @deus %>

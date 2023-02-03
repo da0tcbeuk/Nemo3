@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EveryPost</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/a61459e49a.js" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!--%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %-->
+  </head>
+
+ <body>
+   <header>
+     <h2>EveryPost</h2>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&display=swap');
+</style>
+
+     <div class="header-list">
+       <ul>
+         <% if user_signed_in? %>
+           <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+         <% else %>
+           <li><%= link_to "新規登録", new_user_registration_path %></li>
+           <li><%= link_to "ログイン", new_user_session_path %></li>
+         <% end %>
+       </ul>
+     </div>
+   </header>
+   <main>
+     <%= yield %>
+   </main>
+   <footer>
+      <h3>Copyright © Shiryo All Rights Reserved.</h3>
+    </footer>
+ </body>
+</html>

@@ -1,0 +1,46 @@
+<%= stylesheet_link_tag 'new', :media => "all" %>
+<h1>新しい記事</h1>
+
+<%= form_for @deu do |f| %>
+  
+    <div class='tag'>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+            <div class='form-check'>
+                <%= tag.label class: 'form-check-label' do %>
+                    <%= tag.check_box class: 'form-check-input' %>
+                    <%= tag.text %>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+    </br>
+    <li class="nav-item active">
+    <%= link_to "一覧に戻る", deus_path, class: "nav-link" %>
+    </li>
+
+   <div class="post-container">  
+     <div class="field">
+        <%= f.label :タイトル %>
+        <%= f.text_field :Title, :size => 10 %>
+     </div>
+
+     <div class="field">
+      <%= f.label :本文 %>
+      <%= f.text_area :Text, :size => 30*2 %>
+     </div>
+
+     <div class="field">
+      <%= f.label :参考データ %>
+      <%= f.text_field :Address, :size => 10 %>
+     </div>
+
+     <div class="field">
+      <%= f.label :画像 %>
+      <%= f.file_field :image %>
+      
+     </div>
+     <%= f.submit "寄稿する" %>
+  </div>
+
+    
+<% end %>

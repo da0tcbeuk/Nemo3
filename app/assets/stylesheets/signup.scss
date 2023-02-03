@@ -1,0 +1,28 @@
+
+
+.post-container {
+    margin: 50px auto;
+    width: 50%;
+    border: solid rgba(192, 192, 192, 0.8);
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgba(192, 192, 192, 0.8); 
+}
+
+
+.main {
+    position: absolute;
+    width: 543px;
+    height: 519px;
+    left: 407px;
+    top: 359px;
+    background-color: #DEDEDE;
+    mix-blend-mode: multiply;
+    border-radius: 48px;
+
+}
+
+body{
+   background-image: url(image12.jpg);
+   background-repeat: no-repeat;
+}

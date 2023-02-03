@@ -1,0 +1,41 @@
+<%= stylesheet_link_tag 'users', :media => "all" %>
+<h1>ユーザーマイページ</h1>
+<div class = "user">
+<p>ユーザーネーム : <%= @user.name %></p>
+<%= image_tag @user.image_url, size: "250x200" if @user.image? %>
+
+<p>プロフィール : <%= @user.profile %></p>
+</div>
+</br>
+<li class="nav-item active">
+<% if current_user.id == @user.id %>
+  <%= link_to "編集する", edit_user_registration_path, class: "nav-link" %>
+<% end %>
+</li>
+</br>
+<li class="nav-item active">
+<%= link_to "記事一覧に戻る", deus_path, class: "nav-link" %>
+</li>
+</br>
+<li class="nav-item active">
+<%= link_to "いいね一覧", user_like_path, class: "nav-link" %>
+</li>
+
+<%= page_entries_info @deus %>
+<h1>ライブラリ</h1>
+
+<% @user.deus.each do |t| %>
+  <div class = "user-container">
+  <h3>タイトル</h3>
+  <%= t.Title %>
+  <h3>本文</h3>
+  <%= t.Text %>
+  <h3>参考データ</h3>
+  <%= t.Address %>
+  <h3>画像</h3>
+  <%= image_tag t.image_url, size: "83x67" if t.image? %>
+  <%= link_to "編集する", edit_deu_path(t.id) %>
+ </div>
+<% end %>
+
+<%= paginate @deus %>

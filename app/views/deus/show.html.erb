@@ -1,0 +1,54 @@
+<%= stylesheet_link_tag 'show', :media => "all" %>
+<li class="nav-item active">
+<%= link_to "新規投稿へ", new_deu_path, class: "nav-link" %>
+</li>
+</br>
+<li class="nav-item active">
+<%= link_to "記事一覧に戻る", deus_path, class: "nav-link" %>
+</li>
+</br>
+<li class="nav-item active">
+<% if user_signed_in? %>
+  <%= link_to "マイページへ", user_path(current_user.id), class: "nav-link" %>
+<% end %>
+</li>
+<h1>記事詳細</h1>
+
+<div class="deu">
+<% @deu.tags.each do |tag| %>
+  <h2>タグ：</h2>
+  <span><%= tag.name %></span>
+<% end %>
+  <h2>タイトル</h2> 
+  <p><%= @deu.Title %></p>
+  <h2>本文</h2>
+  <p><%= @deu.Text %></p>
+  <h2>参考データ</h2>
+  <p><%= @deu.Address %></p>
+  <h2>画像</h2>
+  <%= image_tag @deu.image_url, size: "250x200" if @deu.image? %>
+
+  
+
+  <% if user_signed_in? %>
+      <% if current_user.already_liked?(@deu) %>
+        <%= button_to deu_like_path(@deu), method: :delete do %>
+          <i class="fas fa-heart"></i><%= @deu.likes.count %>
+        <% end %>
+      <% else %>
+        <%= button_to deu_likes_path(@deu), method: :post do %>
+          <i class="far fa-heart"></i><%= @deu.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <i class="far fa-heart"></i><%= @deu.likes.count %>
+    <% end %>
+  
+</div>
+<div class ="likes-container">
+<h2>いいねしたユーザー</h2>
+<% @deu.liked_users.each do |user| %>
+  <li><%= user.name %></li>
+<% end %>
+</div>
+

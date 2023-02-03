@@ -1,0 +1,36 @@
+.post-container {
+    margin: 50px auto;
+    width: 50%;
+    border: solid rgba(192, 192, 192, 0.8);
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgba(192, 192, 192, 0.8); 
+}
+ 
+  
+  .title {
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 50px;
+  }
+  input[type="text"] {
+    width: 95%;
+    height: 50px;
+  }
+  input[type="submit"] {
+    width: 200px;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+  body{
+    background-image: url(image5.jpg);
+    background-repeat: no-repeat;
+  }
+  h3{
+    text-align: center;
+  }
+
+  .field{
+   font-size: 20px;
+  }

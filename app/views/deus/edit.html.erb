@@ -1,0 +1,27 @@
+<%= stylesheet_link_tag 'edit', :media => "all" %>
+<h1>記事編集</h1>
+<%= form_for @deu do |f| %>
+  <div class='tag'>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+            <div class='form-check'>
+                <%= tag.label class: 'form-check-label' do %>
+                    <%= tag.check_box class: 'form-check-input' %>
+                    <%= tag.text %>
+                <% end %>
+            </div>
+        <% end %>
+      </div>
+      <%= link_to "一覧に戻る", deus_path %>
+  <div class = "edit-container">
+    <%= f.label :タイトル %>
+    <%= f.text_field :Title, :size => 140 %> 
+    <br><%= f.label :本文 %>
+    <br><%= f.text_area :Text, :size => 140 %> 
+    <br><%= f.label :参考データ %>
+    <%= f.text_field :Address, :size => 140 %>
+    <br><%= f.label :image %>
+    <%= f.file_field :画像 %>
+    <br><%= f.submit "更新する" %>
+    
+  </div>
+  <% end %>
