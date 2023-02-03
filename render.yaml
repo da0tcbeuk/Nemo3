@@ -1,0 +1,21 @@
+databases:
+  - name: EveryPost_DB
+    databaseName: everypost_db
+    user: Everypost
+    region: singapore
+
+services:
+  - type: web
+    name: EveryPost
+    env: ruby
+    region: singapore
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: postgres://everypost_db_odlb_user:FxfiPNQEwhEAxkHd4hJ6WTRswOWOsDy4@dpg-cfe81cun6mpu0ubn7n00-a/everypost_db_odlb
+        fromDatabase:
+          name: EveryPost_DB
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
